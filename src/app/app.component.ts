@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {CurrencyService} from "./service/currency.service";
 import {ResponseCurrencyDto} from "./dto/response.currency.dto";
+import {ChangeDto} from "./dto/change.dto";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'software';
@@ -14,6 +15,23 @@ export class AppComponent {
   currencyForm: FormGroup;
 
   responseCurrencyDto: ResponseCurrencyDto;
+
+  data: ChangeDto[];
+  page: number=0;
+  totalpage: number=0;
+
+  ngOnInit(): void {
+    this.currencyService.getCurrencyList().subscribe({
+      next: (response: any) => {
+        console.log('invocacion exitosa');
+        console.log(response);
+        this.data = response.content;
+        this.totalpage = response.totalPages;
+        console.log('resultado');
+        console.log(this.data);
+      }
+    })
+  }
 
   constructor(private formBuilder: FormBuilder, private currencyService: CurrencyService) {
     this.currencyForm = this.formBuilder.group({

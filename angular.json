@@ -56,7 +56,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
+                  "with": "src/environments/environment.docker.ts"
                 }
               ]
             }
@@ -71,6 +71,12 @@
             },
             "development": {
               "browserTarget": "software:build:development"
+            },
+            "test": {
+              "browserTarget": "software:build:test"
+            },
+            "docker": {
+              "browserTarget": "software:build:docker"
             }
           },
           "defaultConfiguration": "development"
