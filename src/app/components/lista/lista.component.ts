@@ -17,7 +17,7 @@ export class ListaComponent {
   }
 
   ngOnInit(){
-    this.currencyService.getCurrencyList().subscribe({
+    this.currencyService.getChangesList().subscribe({
       next:data=>{
         this.changeDto= data.content;
         this.totalpage = data.totalPages;
@@ -28,7 +28,7 @@ export class ListaComponent {
   pageCount(){
     if (this.page < this.totalpage){
       this.page++;
-      this.currencyService.getCurrencyList().subscribe({
+      this.currencyService.getChangesList().subscribe({
         next:data=>{
           this.changeDto= data.content;
           this.totalpage = data.totalPages;
@@ -40,7 +40,7 @@ export class ListaComponent {
   pageDown(){
     if (this.page != 0){
       this.page--;
-      this.currencyService.getCurrencyList().subscribe({
+      this.currencyService.getChangesList().subscribe({
         next:data=>{
           this.changeDto= data.content;
           this.totalpage = data.totalPages;
@@ -51,4 +51,28 @@ export class ListaComponent {
 
   displayData: string[] = ['ID', 'FROM', 'TO', 'AMOUNT', 'DATE', 'RESULT'];
 
+  applyOriginCurrencyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // @ts-ignore
+    this.changeDto = this.changeDto.filter(change => change.from.toLowerCase().includes(filterValue.toLowerCase()));
+  }
+
+  applyTargetCurrencyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // @ts-ignore
+    this.changeDto = this.changeDto.filter(change => change.to.toLowerCase().includes(filterValue.toLowerCase()));
+  }
+
+  applyCurrencyAmountFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // @ts-ignore
+    this.changeDto = this.changeDto.filter(change => change.amount.toString().includes(filterValue));
+  }
+
+
+  applyResultFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // @ts-ignore
+    this.changeDto = this.changeDto.filter(change => change.result.toString().includes(filterValue));
+  }
 }

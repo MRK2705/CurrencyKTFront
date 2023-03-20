@@ -21,7 +21,7 @@ export class AppComponent {
   totalpage: number=0;
 
   ngOnInit(): void {
-    this.currencyService.getCurrencyList().subscribe({
+    this.currencyService.getChangesList().subscribe({
       next: (response: any) => {
         console.log('invocacion exitosa');
         console.log(response);

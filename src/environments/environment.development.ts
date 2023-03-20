@@ -1,3 +1,4 @@
 export const environment = {
-  API_KEY: "222222222"
+  production: false,
+  API_URL: 'http://localhost:4200/backend'
 };

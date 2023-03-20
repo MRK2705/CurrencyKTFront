@@ -1,5 +1,19 @@
-<table mat-table [dataSource]="changeDto" class="mat-elevation-z8">
+<mat-form-field appearance="fill">
+  <mat-label>Moneda origen:</mat-label>
+  <input matInput (keyup)="applyOriginCurrencyFilter($event)" />
+</mat-form-field>
 
+<mat-form-field>
+  <mat-label>Moneda destino:</mat-label>
+  <input matInput (keyup)="applyTargetCurrencyFilter($event)" />
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Buscar por monto:</mat-label>
+  <input matInput (keyup)="applyCurrencyAmountFilter($event)" />
+</mat-form-field>
+
+<table mat-table [dataSource]="changeDto" class="mat-elevation-z8">
   <ng-container matColumnDef="ID">
     <th mat-header-cell *matHeaderCellDef> ID </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>

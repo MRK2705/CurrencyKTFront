@@ -15,11 +15,11 @@ export class CurrencyService {
   }
 
   public convertCurrency(from: string, to: string, amount: number): Observable<ResponseCurrencyDto>{
-    return this.http.get<ResponseCurrencyDto>(`http://localhost:8080/api/v1/currency/obtain?from=${from}&to=${to}&amount=${amount}`);
+    return this.http.get<ResponseCurrencyDto>(`${environment.API_URL}/api/v1/currency/obtain?from=${from}&to=${to}&amount=${amount}`);
   }
 
-  public getCurrencyList(): Observable<any>{
-    return this.http.get<any>(`http://localhost:8080/api/v1/currency/list?page=0&size=10`);
+  public getChangesList(): Observable<any>{
+    return this.http.get<any>(`${environment.API_URL}/api/v1/currency/list?page=0&size=10`);
   }
 
 }
