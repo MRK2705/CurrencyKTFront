@@ -1,6 +1,6 @@
 FROM node:14.20-alpine as build
 
-ARG environment
+ARG environment=docker
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install

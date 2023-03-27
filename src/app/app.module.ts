@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { ListaComponent } from './components/lista/lista.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     ReactiveFormsModule,
     HttpClientModule,
     MatTableModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
