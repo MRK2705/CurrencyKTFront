@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,8 @@ import { ListaComponent } from './components/lista/lista.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
+import { initializeKeycloak } from './init/keycloak-init.factory';
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 
 @NgModule({
   declarations: [
@@ -27,9 +29,17 @@ import {MatIconModule} from "@angular/material/icon";
     HttpClientModule,
     MatTableModule,
     MatDatepickerModule,
-    MatIconModule
+    MatIconModule,
+    KeycloakAngularModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
