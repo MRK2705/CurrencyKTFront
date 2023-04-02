@@ -1,15 +1,16 @@
 import { KeycloakService } from "keycloak-angular";
+import {environment} from "../../environments/environment";
 
 export function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: "http://localhost:8081",
-        realm: "software",
-        clientId: "frontend"
+        url: environment.URL_KEYCLOAK,
+        realm: 'software',
+        clientId: 'frontend'
       },
       initOptions: {
-        onLoad: "login-required",
+        onLoad: 'login-required',
         checkLoginIframe: false
       }
     });

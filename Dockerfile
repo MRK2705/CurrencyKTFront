@@ -1,12 +1,12 @@
 FROM node:14.20-alpine as build
 
-ARG environment1=docker
+ARG environment=docker
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 RUN npm install -g @angular/cli
-RUN ng build --configuration $environment1
+RUN ng build --configuration $environment
 
 
 FROM nginx:1.17.0-alpine

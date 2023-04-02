@@ -11,7 +11,7 @@ import {environment} from "../../environments/environment";
 export class CurrencyService {
 
   // @ts-ignore
-  BACK_URL = environment.API_URL;
+  BACK_URL = environment.API_URL
   constructor(private http: HttpClient) {
 
   }
