@@ -13,11 +13,17 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
 import { initializeKeycloak } from './init/keycloak-init.factory';
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import { CurrencyComponent } from './components/currency/currency.component';
+import { ErrorComponent } from './components/error/error.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListaComponent
+    ListaComponent,
+    CurrencyComponent,
+    ErrorComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

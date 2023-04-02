@@ -22,8 +22,8 @@ export class CurrencyService {
     // return this.http.get<ResponseCurrencyDto>(`http://localhost:8080/api/v1/currency/obtain?from=${from}&to=${to}&amount=${amount}`);
   }
 
-  public getChangesList(): Observable<any>{
-    return this.http.get<any>(`${this.BACK_URL}/api/v1/currency/list?page=0&size=10`);
+  public getChangesList(page: number): Observable<any>{
+    return this.http.get<any>(`${this.BACK_URL}/api/v1/currency/list?page=`+page+`&size=10`);
     // return this.http.get<any>(`http://localhost:8080/api/v1/currency/list?page=0&size=10`);
   }
 

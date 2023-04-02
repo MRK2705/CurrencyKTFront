@@ -8,42 +8,49 @@ import {ChangeDto} from "../../dto/change.dto";
   styleUrls: ['./lista.component.css']
 })
 export class ListaComponent {
-  changeDto: ChangeDto[];
-  page: number=0;
-  totalpage: number=0;
+  page1: number=0;
+  totalpage1: number=0;
 
   constructor(private currencyService: CurrencyService) {
 
   }
+   data!: ChangeDto[];
+  // totalpage: number=0;
 
-  ngOnInit(){
-    this.currencyService.getChangesList().subscribe({
+  ngOnInit(): void {
+    this.currencyService.getChangesList(this.page1).subscribe({
+      next: data => {
+        this.data = data['content'];
+        this.totalpage1 = data['totalPages'];
+      }
+    })
+    this.currencyService.getChangesList(this.page1).subscribe({
       next:data=>{
-        this.changeDto= data.content;
-        this.totalpage = data.totalPages;
+        this.data= data.content;
+        this.totalpage1 = data.totalPages;
       }
     })
   }
 
   pageCount(){
-    if (this.page < this.totalpage){
-      this.page++;
-      this.currencyService.getChangesList().subscribe({
+    if (this.page1 < this.totalpage1){
+      this.page1++;
+      this.currencyService.getChangesList(this.page1).subscribe({
         next:data=>{
-          this.changeDto= data.content;
-          this.totalpage = data.totalPages;
+          this.data= data['content'];
+          this.totalpage1 = data['totalPages'];
         }
       })
     }
   }
 
   pageDown(){
-    if (this.page != 0){
-      this.page--;
-      this.currencyService.getChangesList().subscribe({
+    if (this.page1 != 0){
+      this.page1--;
+      this.currencyService.getChangesList(this.page1).subscribe({
         next:data=>{
-          this.changeDto= data.content;
-          this.totalpage = data.totalPages;
+          this.data= data['content'];
+          this.totalpage1 = data['totalPages'];
         }
       })
     }
